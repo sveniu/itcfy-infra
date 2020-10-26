@@ -37,6 +37,16 @@ data "aws_iam_policy_document" "itcfy_web_s3_upload" {
       "${aws_s3_bucket.web.arn}/*",
     ]
   }
+
+  statement {
+    actions = [
+      "cloudfront:CreateInvalidation",
+    ]
+
+    resources = [
+      aws_cloudfront_distribution.web.arn,
+    ]
+  }
 }
 
 resource "aws_iam_policy" "itcfy_web_s3_upload" {
