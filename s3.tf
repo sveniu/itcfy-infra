@@ -8,6 +8,12 @@ resource "aws_s3_bucket" "terraform_remote_backend" {
   }
 }
 
+# Bucket for PR testing.
+resource "aws_s3_bucket" "test123" {
+  bucket = "${local.s3_bucket_prefix}-test123"
+  acl    = "private"
+}
+
 # Create S3 bucket for holding files. Note that the bucket is assigned the
 # 'private' ACL by default, while the contents are intended to be public. The
 # idea is that the bucket itself will indeed be private, but allows access via
